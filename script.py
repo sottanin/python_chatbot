@@ -8,7 +8,7 @@ Original file is located at
 
 # **Prepare Data**
 """
-#pip install pandasql
+pip install pandasql
 
 import pandas as pd
 import pandasql as ps
@@ -28,7 +28,7 @@ df.head()
 
 """# **NLP2SQL**"""
 
-#!pip install openai
+pip install openai
 
 import openai
 
@@ -37,7 +37,6 @@ openai.api_key = key
 
 response = openai.Completion.create(engine="text-davinci-002", prompt="Say this is a test", temperature=0, max_tokens=100)
 
-#!git clone https://github.com/shreyashankar/gpt3-sandbox.git
 
 
 
@@ -61,9 +60,9 @@ ax.savefig('zone.png')
 
 """# **Line Bot SDK**"""
 
-#!pip install pyngrok
+pip install pyngrok
 
-#!pip install line-bot-sdk
+pip install line-bot-sdk
 
 
 import json
