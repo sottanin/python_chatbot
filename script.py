@@ -8,24 +8,7 @@ Original file is located at
 
 # **Prepare Data**
 """
-
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
-from google.colab import auth
-from oauth2client.client import GoogleCredentials
-# Authenticate and create the PyDrive client.
-
-auth.authenticate_user()
-gauth = GoogleAuth()
-gauth.credentials = GoogleCredentials.get_application_default()
-drive = GoogleDrive(gauth)
-
-link_file = 'https://drive.google.com/file/d/1x4OY0hWaQQpxJF9x6E-0PhxGeOaUiCAs/view?usp=sharing'
-_,_,_,_,_,id,_ = link_file.split('/')
-downloaded = drive.CreateFile({'id':id})
-downloaded.GetContentFile('car_sales.csv')
-
-!pip install pandasql
+#pip install pandasql
 
 import pandas as pd
 import pandasql as ps
@@ -45,7 +28,7 @@ df.head()
 
 """# **NLP2SQL**"""
 
-!pip install openai
+#!pip install openai
 
 import openai
 
@@ -54,30 +37,9 @@ openai.api_key = key
 
 response = openai.Completion.create(engine="text-davinci-002", prompt="Say this is a test", temperature=0, max_tokens=100)
 
-!git clone https://github.com/shreyashankar/gpt3-sandbox.git
+#!git clone https://github.com/shreyashankar/gpt3-sandbox.git
 
-cd gpt3-sandbox
 
-!pip install -r api/requirements.txt
-
-from api import GPT, Example, set_openai_key
-
-gpt = gpt = GPT(engine="text-davinci-002", temperature=0.5, max_tokens=100)
-set_openai_key(key)
-
-#ต้องกด 
-df2 = pd.read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vTsP4fersZA35d1ZenJYmzd6yHkvp3OM_xBO8nZebBFIn_pkaC9yLIQ3QGLns0K1KcmnN4SV2ea9-vc/pub?output=csv')
-
-df2
-
-for index, row in df2.iterrows():
-    gpt.add_example(Example(row['text'],row['sql']))
-    print("prompt:", row['text'])
-    print("response:", row['sql'])
-
-prompt = "รายการยอดขายรถยนต์แต่ละภูมิภาค"
-
-print(gpt.get_top_reply(prompt).replace("output: ",""))
 
 """# **PandaSQL**"""
 
@@ -99,22 +61,10 @@ ax.savefig('zone.png')
 
 """# **Line Bot SDK**"""
 
-!pip install pyngrok
+#!pip install pyngrok
 
-!pip install line-bot-sdk
+#!pip install line-bot-sdk
 
-#sql = "select region, count(model) as total from df4 where model = 'SL-Class' group by region"
-    sql = """select * from df where invoice_date not null and model = 'SL-Class'"""
-
-    print(sql)
-    df4 = ps.sqldf(sql, locals())
-    df4.info()
-    df4.head()
-    # # save figure
-    plt.figure(figsize=(8, 5))
-    plt.suptitle("Report")
-    ax = sns.histplot(data=df4, x="region", hue="region").get_figure() #x==continue , y==number
-    ax.savefig('report_1.png')
 
 import json
 import os
@@ -132,8 +82,8 @@ port_no = 5000
 
 #Flask
 app = Flask(__name__)
-ngrok.set_auth_token("2HQgO3WIl0uxBbjgf4bejj41ybL_648ursQGYpv5qrAffExbk")
-#ngrok.set_auth_token("2HQgODtPv4bCsGSW5QTooQuZMkl_6EvGy6petKP4ftb5oEmq7")
+#ngrok.set_auth_token("2HQgO3WIl0uxBbjgf4bejj41ybL_648ursQGYpv5qrAffExbk")
+ngrok.set_auth_token("2HQgODtPv4bCsGSW5QTooQuZMkl_6EvGy6petKP4ftb5oEmq7")
 public_url =  ngrok.connect(port_no).public_url
 
 line_bot_api = LineBotApi('kWeq23t6pFxFPzPWc25LPgBBND7RU0fgBzIylupasm7jyqh/3ZxrYMFAOr92sf6KOXE+hyWnbVm0fQONiMWIJbMRFST/kxGMGFEKM42sJgzKa1Suk7onQrrGn9IYcs9KmFq2txTZMuwxnWwDmt2BqAdB04t89/1O/w1cDnyilFU=')
@@ -181,7 +131,7 @@ def reply(reply_token):
     line_bot_api.reply_message(reply_token,text_message)
 
 def nlp(text, intent_name, reply_token):
-    
+
     # nlp_return = gpt.get_top_reply(text).replace("output: ","")
     # text_message = TextSendMessage(text=nlp_return)
     response = openai.Completion.create(engine="text-davinci-002", prompt=text, temperature=0, max_tokens=100)
