@@ -8,7 +8,7 @@ Original file is located at
 
 # **Prepare Data**
 """
-pip install pandasql
+#pip install pandasql
 
 import pandas as pd
 import pandasql as ps
@@ -28,7 +28,7 @@ df.head()
 
 """# **NLP2SQL**"""
 
-pip install openai
+#pip install openai
 
 import openai
 
@@ -60,9 +60,9 @@ ax.savefig('zone.png')
 
 """# **Line Bot SDK**"""
 
-pip install pyngrok
+#pip install pyngrok
 
-pip install line-bot-sdk
+#pip install line-bot-sdk
 
 
 import json
