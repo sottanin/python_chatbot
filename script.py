@@ -35,7 +35,7 @@ import openai
 key = "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"
 openai.api_key = key
 
-response = openai.Completion.create(engine="text-davinci-002", prompt="Say this is a test", temperature=0, max_tokens=100)
+#response = openai.Completion.create(engine="text-davinci-002", prompt="Say this is a test", temperature=0, max_tokens=100)
 
 
 
